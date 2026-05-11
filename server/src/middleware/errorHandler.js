@@ -1,0 +1,48 @@
+const errorHandler = (err, req, res, next) => {
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Internal Server Error';
+
+  // Mongoose Duplicate Key Error
+  if (err.code === 11000) {
+    const field = Object.keys(err.keyValue)[0];
+    message = `${field.charAt(0).toUpperCase() + field.slice(1)} already exists.`;
+    statusCode = 400;
+  }
+
+  // Mongoose Validation Error
+  if (err.name === 'ValidationError') {
+    message = Object.values(err.errors)
+      .map((e) => e.message)
+      .join(', ');
+    statusCode = 400;
+  }
+
+  // Mongoose Cast Error (invalid ObjectId)
+  if (err.name === 'CastError') {
+    message = `Invalid ID: ${err.value}`;
+    statusCode = 400;
+  }
+
+  // JWT Errors
+  if (err.name === 'JsonWebTokenError') {
+    message = 'Invalid token.';
+    statusCode = 401;
+  }
+  if (err.name === 'TokenExpiredError') {
+    message = 'Token has expired.';
+    statusCode = 401;
+  }
+
+  console.error(`[ERROR] ${statusCode} - ${message}`);
+  if (process.env.NODE_ENV === 'development') {
+    console.error(err.stack);
+  }
+
+  res.status(statusCode).json({
+    success: false,
+    message,
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+  });
+};
+
+export default errorHandler;
