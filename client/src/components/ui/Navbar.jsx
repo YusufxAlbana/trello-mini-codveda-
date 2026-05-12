@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, User, ChevronDown } from 'lucide-react';
+import { LogOut, User, ChevronDown } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
 
 export default function Navbar() {
@@ -38,9 +38,7 @@ export default function Navbar() {
               <div className="navbar-dropdown-name">{user?.name}</div>
               <div className="navbar-dropdown-email">{user?.email}</div>
             </div>
-            <Link to="/" className="navbar-dropdown-item" onClick={() => setOpen(false)}>
-              <LayoutDashboard size={15} /> Dashboard
-            </Link>
+
             <div className="navbar-dropdown-item danger" onClick={handleLogout}>
               <LogOut size={15} /> Sign out
             </div>
