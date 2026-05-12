@@ -49,12 +49,7 @@ export default function RegisterPage() {
       <div className="auth-right">
         <div className="auth-form-box">
           <div className="auth-logo">
-            <div className="auth-logo-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="7" height="14" rx="2" fill="white" />
-                <rect x="14" y="3" width="7" height="9" rx="2" fill="white" opacity="0.7"/>
-              </svg>
-            </div>
+            <img src="/logo.png" alt="Taskly" style={{ width: 44, height: 44, borderRadius: 12, objectFit: 'cover' }} />
             <span>Taskly</span>
           </div>
           <h2 className="auth-title">Create your account</h2>

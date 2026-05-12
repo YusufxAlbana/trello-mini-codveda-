@@ -22,12 +22,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
-        <div className="navbar-logo-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="7" height="14" rx="2" fill="white" />
-            <rect x="14" y="3" width="7" height="9" rx="2" fill="white" opacity="0.7"/>
-          </svg>
-        </div>
+        <img src="/logo.png" alt="Taskly" style={{ width: 34, height: 34, borderRadius: 9, objectFit: 'cover' }} />
         <span>Taskly</span>
       </Link>
       <div className="navbar-spacer" />
