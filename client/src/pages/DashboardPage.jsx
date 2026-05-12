@@ -106,9 +106,40 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        {/* Boards */}
+        {/* Starred Boards */}
+        {starredBoards > 0 && (
+          <>
+            <div className="section-header">
+              <h2 className="section-title"><Star size={18} fill="#FFB347" color="#FFB347" style={{ marginRight: 8, verticalAlign: 'middle' }} />Starred Boards</h2>
+            </div>
+            <div className="boards-grid" style={{ marginBottom: 40 }}>
+              {boards.filter(b => b.starred).map(board => (
+                <Link to={`/board/${board._id}`} key={board._id} className="board-card">
+                  <div className="board-card-header" style={{ background: board.background }}>
+                    <div className="board-card-title">{board.title}</div>
+                    <div className="board-card-actions" style={{ opacity: 1 }}>
+                      <button className="btn btn-icon" style={{ background: 'rgba(255,255,255,0.25)', color: '#fff', padding: 6 }}
+                        onClick={(e) => handleStar(e, board)} title="Unstar">
+                        <Star size={14} fill="#fff" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="board-card-body">
+                    <div className="board-card-meta">
+                      <span className="board-card-stat">
+                        {board.description || 'No description'}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* All Boards */}
         <div className="section-header">
-          <h2 className="section-title"><LayoutGrid size={18} style={{ marginRight: 8, verticalAlign: 'middle' }} />My Boards</h2>
+          <h2 className="section-title"><LayoutGrid size={18} style={{ marginRight: 8, verticalAlign: 'middle' }} />All Boards</h2>
           <button className="btn btn-primary btn-sm" onClick={() => setShowCreate(true)}>
             <Plus size={15} /> New Board
           </button>
