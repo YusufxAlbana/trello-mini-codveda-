@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Plus, LayoutGrid, Star, Trash2, MoreHorizontal } from 'lucide-react';
+import { Plus, LayoutGrid, Star, Trash2, MoreHorizontal, Layout, Clock, User } from 'lucide-react';
 import Navbar from '../components/ui/Navbar.jsx';
 import Modal from '../components/ui/Modal.jsx';
 import LoadingSpinner from '../components/ui/LoadingSpinner.jsx';
@@ -53,7 +53,7 @@ export default function DashboardPage() {
       setBoards([res.data.board, ...boards]);
       setShowCreate(false);
       setForm({ title: '', description: '', background: COLORS[0] });
-      toast.success('Board created! 🎉');
+      toast.success('Board created!');
     } catch { toast.error('Failed to create board'); }
     finally { setCreating(false); }
   };
@@ -87,17 +87,17 @@ export default function DashboardPage() {
       <Navbar />
       <div className="dashboard">
         <div className="dashboard-header">
-          <h1>{GREETING()}, {user?.name?.split(' ')[0]}! 👋</h1>
+          <h1>{GREETING()}, {user?.name?.split(' ')[0]}!</h1>
           <p>You have <strong>{totalBoards}</strong> board{totalBoards !== 1 ? 's' : ''} in your workspace.</p>
         </div>
 
         {/* Stats */}
         <div className="stats-grid">
           {[
-            { icon: '📋', label: 'Total Boards', value: totalBoards, bg: '#ede9ff', color: '#6C63FF' },
-            { icon: '⭐', label: 'Starred', value: starredBoards, bg: '#fff7ed', color: '#FFB347' },
-            { icon: '🕒', label: 'Recent Activity', value: recentBoards, bg: '#ecfdf5', color: '#43E6C5' },
-            { icon: '👤', label: 'Your Workspace', value: 1, bg: '#fff0f5', color: '#FF6584' },
+            { icon: <Layout size={24} />, label: 'Total Boards', value: totalBoards, bg: '#ede9ff', color: '#6C63FF' },
+            { icon: <Star size={24} />, label: 'Starred', value: starredBoards, bg: '#fff7ed', color: '#FFB347' },
+            { icon: <Clock size={24} />, label: 'Recent Activity', value: recentBoards, bg: '#ecfdf5', color: '#43E6C5' },
+            { icon: <User size={24} />, label: 'Your Workspace', value: 1, bg: '#fff0f5', color: '#FF6584' },
           ].map(s => (
             <div className="stat-card" key={s.label}>
               <div className="stat-icon" style={{ background: s.bg }}>{s.icon}</div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Layout, Palette, CalendarClock, Zap } from 'lucide-react';
 import { loginUser } from '../api/authApi.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -20,7 +21,7 @@ export default function LoginPage() {
     try {
       const res = await loginUser(form);
       login(res.data.token, res.data.user);
-      toast.success(`Welcome back, ${res.data.user.name}! 👋`);
+      toast.success(`Welcome back, ${res.data.user.name}!`);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
@@ -36,7 +37,7 @@ export default function LoginPage() {
           <h1>Manage your work,<br />beautifully.</h1>
           <p>Taskly helps teams move work forward with visual boards, powerful cards, and seamless collaboration.</p>
           <div className="auth-features">
-            {[['📋', 'Kanban boards with drag & drop'], ['🎨', 'Colorful cards and priority labels'], ['📅', 'Due dates and overdue tracking'], ['⚡', 'Fast and intuitive workflow']].map(([icon, text]) => (
+            {[[<Layout size={18} />, 'Kanban boards with drag & drop'], [<Palette size={18} />, 'Colorful cards and priority labels'], [<CalendarClock size={18} />, 'Due dates and overdue tracking'], [<Zap size={18} />, 'Fast and intuitive workflow']].map(([icon, text]) => (
               <div className="auth-feature" key={text}>
                 <div className="auth-feature-icon">{icon}</div>
                 <span>{text}</span>

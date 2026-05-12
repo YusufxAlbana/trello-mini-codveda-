@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import toast from 'react-hot-toast';
-import { ArrowLeft, Plus, X, Check, MoreHorizontal, Trash2, Edit3 } from 'lucide-react';
+import { ArrowLeft, Plus, X, Check, MoreHorizontal, Trash2, Edit3, Calendar, CheckCircle2 } from 'lucide-react';
 import Navbar from '../components/ui/Navbar.jsx';
 import LoadingSpinner from '../components/ui/LoadingSpinner.jsx';
 import CardDetailModal from '../components/board/CardDetailModal.jsx';
@@ -39,10 +39,10 @@ function KanbanCard({ card, index, onOpen }) {
             </span>
             {card.dueDate && (
               <span className={`kanban-card-due ${isOverdue ? 'due-overdue' : isSoon ? 'due-soon' : 'due-ok'}`}>
-                📅 {new Date(card.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
+                <Calendar size={12} /> {new Date(card.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
               </span>
             )}
-            {card.completed && <span style={{ fontSize: 12, color: '#059669' }}>✓ Done</span>}
+            {card.completed && <span style={{ fontSize: 12, color: '#059669', display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle2 size={12} /> Done</span>}
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Trash2, Calendar, Flag, Tag, CheckCircle } from 'lucide-react';
+import { X, Trash2, Calendar, Flag, Tag, CheckCircle, List, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { updateCard } from '../../api/cardApi.js';
 
@@ -62,10 +62,10 @@ export default function CardDetailModal({ card, listTitle, onClose, onUpdate, on
         {/* Header */}
         <div className="modal-header" style={{ borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1 }}>
-            <span style={{ fontSize: 12, background: 'var(--border)', padding: '3px 10px', borderRadius: 99, fontWeight: 600, color: 'var(--text-muted)' }}>
-              📋 {listTitle}
+            <span style={{ fontSize: 12, background: 'var(--border)', padding: '3px 10px', borderRadius: 99, fontWeight: 600, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <List size={12} /> {listTitle}
             </span>
-            {form.completed && <span style={{ fontSize: 12, background: '#ecfdf5', color: '#059669', padding: '3px 10px', borderRadius: 99, fontWeight: 600 }}>✓ Completed</span>}
+            {form.completed && <span style={{ fontSize: 12, background: '#ecfdf5', color: '#059669', padding: '3px 10px', borderRadius: 99, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle2 size={12} /> Completed</span>}
           </div>
           <button className="btn btn-ghost btn-icon" onClick={onClose}><X size={18} /></button>
         </div>

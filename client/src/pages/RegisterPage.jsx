@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Rocket, ShieldCheck, Smartphone, Target } from 'lucide-react';
 import { registerUser } from '../api/authApi.js';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -21,7 +22,7 @@ export default function RegisterPage() {
     try {
       const res = await registerUser(form);
       login(res.data.token, res.data.user);
-      toast.success(`Account created! Welcome, ${res.data.user.name}! 🎉`);
+      toast.success(`Account created! Welcome, ${res.data.user.name}!`);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed.');
@@ -37,7 +38,7 @@ export default function RegisterPage() {
           <h1>Start organizing<br />your work today.</h1>
           <p>Join thousands of teams using Taskly to manage projects visually and get more done.</p>
           <div className="auth-features">
-            {[['🚀', 'Free forever, no credit card'], ['🔒', 'Secure JWT authentication'], ['📱', 'Works on all devices'], ['🎯', 'CRUD operations made beautiful']].map(([icon, text]) => (
+            {[[<Rocket size={18} />, 'Free forever, no credit card'], [<ShieldCheck size={18} />, 'Secure JWT authentication'], [<Smartphone size={18} />, 'Works on all devices'], [<Target size={18} />, 'CRUD operations made beautiful']].map(([icon, text]) => (
               <div className="auth-feature" key={text}>
                 <div className="auth-feature-icon">{icon}</div>
                 <span>{text}</span>
